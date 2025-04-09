@@ -2,6 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+const BACKEND_URL = 'https://casechapterbackend-production.up.railway.app';
+
 export default function Home() {
   const [message, setMessage] = useState('');
   const [chatInput, setChatInput] = useState('');
@@ -10,7 +12,7 @@ export default function Home() {
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/hello')
+    fetch(`${BACKEND_URL}/api/hello`)
       .then((res) => res.json())
       .then((data) => setMessage(data.message));
   }, []);
@@ -34,7 +36,7 @@ export default function Home() {
     setChatHistory(prev => [...prev, { type: 'user', message: userMessage }]);
 
     try {
-      const response = await fetch('http://localhost:8000/api/chat', {
+      const response = await fetch(`${BACKEND_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
