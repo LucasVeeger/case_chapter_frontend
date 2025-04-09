@@ -36,7 +36,7 @@ export default function Home() {
     setChatHistory(prev => [...prev, { type: 'user', message: userMessage }]);
 
     try {
-      const response = await fetch(`${BACKEND_URL}/api/chat`, {
+      const response = await fetch(`${BACKEND_URL}/api/chat/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
